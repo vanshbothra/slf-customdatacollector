@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Crash Data</title>
+<style>
+body {
+  margin: 0;
+}
+
+table {
+  text-align: left;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 0.25rem;
+}
+tr.red th {
+  background: red;
+  color: white;
+}
+tr.green th {
+  background: green;
+  color: white;
+}
+tr.purple th {
+  background: purple;
+  color: white;
+}
+th {
+  background: white;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+</style>
+</head>
+<body>
+    
+    <!-- <p>Kota Crash Data</p> -->
+    <div style="overflow-x:visible;" class="table-responsive">
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">FIR Number</th>
+                <th scope="col">Crash Date</th>
+                <th scope="col">Crash District</th>
+                <th scope="col">Crash Jurisdiction</th>
+                <th scope="col">Crash Between</th>
+                <th scope="col">Number of Fatalities</th>
+                <th scope="col">FIR Summary</th>
+            </tr>
+            </thead>
+            <tbody>
+                <%displaydata.forEach(viewdata => {%>
+                    <tr>
+                        <th scope="row"><%= viewdata.FIRNumber %></th>
+                        <td><%= moment(viewdata.crashDate).format('DD-MM-YYYY') %></td>
+                        <td><%= viewdata.crashDistrict %></td>
+                        <td><%= viewdata.crashJurisdiction %></td>
+                        <td><%= viewdata.crashBetween %></td>
+                        <td style="text-align: center;"><%= viewdata.numberofFatalities %></td>
+                        <td><%= viewdata.FIRSummary %></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
